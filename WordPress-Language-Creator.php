@@ -13,13 +13,20 @@ function my_theme_get_translatable_strings($dir)
             $file_contents = file_get_contents($filename);
             preg_match_all('/(?:__|_e|esc_html__|esc_attr__)\(\s*([\'"])(.*?)\1\s*(?:,\s*[\'"](.*?)\3\s*)?\)/', $file_contents, $matches, PREG_SET_ORDER);
             foreach ($matches as $match) {
-                $strings[] = trim($match[2]);
+                // * add the match
+                // $strings[] = trim($match[2]);
+                // * not included is add
+                $string = trim($match[2]);
+                if (!in_array($string, $strings)) {
+                    $strings[] = $string;
+                }
             }
         }
     }
     return array_unique($strings);
 }
 
+// * additional filtering
 // function my_theme_get_translatable_strings($dir, $exclude_prefix = '__')
 // {
 //     $strings = array();
