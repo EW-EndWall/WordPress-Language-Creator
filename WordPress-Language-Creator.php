@@ -71,6 +71,6 @@ function my_theme_generate_translation_file($dir, $filename, $domain)
 
 $dir = get_template_directory(); // * Theme home directory
 $filename = 'en'; // * POT file name
-$domain = 'ew-theme'; // * The theme's translation area
+$domain = 'my-theme'; // * The theme's translation area
 
 my_theme_generate_translation_file($dir, $filename, $domain);
