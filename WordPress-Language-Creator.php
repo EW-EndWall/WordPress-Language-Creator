@@ -84,6 +84,9 @@ function my_get_line_number($file_contents, $match)
 function my_theme_generate_translation_file($dir, $filename, $domain)
 {
     // * create file path
+    if (!is_dir($dir . "/languages/")) {
+        mkdir($dir . "/languages/", 0755);
+    }
     $path = $dir . "/languages/" . $filename . ".pot";
     // * get text and file/line information
     $strings_with_info = my_theme_get_translatable_strings($dir);
@@ -122,7 +125,7 @@ function my_theme_generate_translation_file($dir, $filename, $domain)
     fclose($file);
 }
 
-$dir = get_template_directory(); // * Theme home directory
+$dir = __DIR__; // * Theme home directory
 $filename = 'demo'; // * POT file name
 $domain = 'my-theme'; // * The theme's translation area
 
